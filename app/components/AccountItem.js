@@ -7,9 +7,14 @@ import TouchableScale from "./common/TouchableScale";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import styles from "../styles/Accounts";
 import getAccountIcon from "../utils/AccountIcons";
+import { empty } from "../utils/Utils";
+import CircularProgress from "react-native-circular-progress-indicator";
 
 export default function AccountItem({ item, onPress }) {
 	const [code, setCode] = useState("");
+	const [counter, setCounter] = useState(0);
+
+	let period = !empty(item?.period) ? item.period : 30;
 
 	useEffect(() => {
 		generateCode();
@@ -32,6 +37,17 @@ export default function AccountItem({ item, onPress }) {
 						<Text style={styles.cardText}>{item.name}</Text>
 						<Text style={styles.cardText}>{code}</Text>
 					</View>
+					<View style={styles.cardCounter}>
+						<CircularProgress
+							radius={26}
+							value={counter}
+							maxValue={period}
+							activeStrokeColor={`${Gradients[item.gradient][Gradients[item.gradient].length - 1]}`}
+							activeStrokeSecondaryColor={`${Gradients[item.gradient][0]}`}
+							inActiveStrokeColor={Colors.mainFourth}
+							progressValueFontSize={14}
+						/>
+					</View>
 					<View style={styles.cardRight}>
 						<Icon name="chevron-right" size={40} color={Colors.mainContrast}/>
 					</View>
@@ -42,6 +58,8 @@ export default function AccountItem({ item, onPress }) {
 
 	function generateCode() {
 		try {
+			let timeLeft = Math.floor(period - Date.now() / 1000 % period);
+			setCounter(timeLeft);
 			setCode(totp(item.secret));
 		} catch(error) {
 			setCode("");

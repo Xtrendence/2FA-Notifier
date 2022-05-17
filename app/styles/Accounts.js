@@ -66,6 +66,11 @@ export default styles = StyleSheet.create({
 		flexGrow: 1,
 		justifyContent: "center"
 	},
+	cardCounter: {
+		width: 50,
+		alignItems: "center",
+		justifyContent: "center"
+	},
 	cardRight: {
 		width: 80,
 		alignItems: "center",

@@ -10,31 +10,37 @@ let data = [
 		name: "Twitter",
 		secret: "23TplPdS46Juzcyx",
 		gradient: 11,
+		period: 30
 	},
 	{
 		name: "Instagram",
 		secret: "23TplsdS46Juzcyx",
 		gradient: 0,
+		period: 30
 	},
 	{
 		name: "Reddit",
 		secret: "23TplPdS46Jwzdyx",
 		gradient: 1,
+		period: 30
 	},
 	{
 		name: "Random",
 		secret: "23TplPdS46Jwzdcc",
 		gradient: 9,
+		period: 30
 	},
 	{
 		name: "Cloudflare",
 		secret: "23TplPdS46Jwzdff",
 		gradient: 13,
+		period: 30
 	},
 	{
 		name: "Microsoft",
 		secret: "23TplPdS46Jwzdmm",
 		gradient: 2,
+		period: 30
 	},
 ]
 
