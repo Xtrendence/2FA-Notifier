@@ -34,7 +34,7 @@ export default function AccountItem({ item, onPress }) {
 						<Icon name={getAccountIcon(item.name)} size={40} color={Colors.mainContrast}/>
 					</View>
 					<View style={styles.cardCenter}>
-						<Text style={styles.cardText}>{item.name}</Text>
+						<Text style={[styles.cardText, styles.cardName]} ellipsizeMode="tail" numberOfLines={1}>{item.name}</Text>
 						<Text style={styles.cardText}>{code}</Text>
 					</View>
 					<View style={styles.cardCounter}>

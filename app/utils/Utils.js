@@ -9,3 +9,11 @@ export function empty(value) {
 
 	return false;
 }
+
+export function wait(duration) {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(null);
+		}, duration);
+	});
+}

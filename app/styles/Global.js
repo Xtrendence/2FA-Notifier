@@ -21,6 +21,9 @@ export const Colors = {
 	mainThird: "rgb(40,40,40)",
 	mainFourth: "rgb(50,50,50)",
 	mainContrast: "rgb(255,255,255)",
+	mainContrastDark: "rgb(220,220,220)",
+	accentFirst: "rgb(218,185,252)",
+	accentSecond: "rgb(125,89,252)",
 	accentContrast: "rgb(255,255,255)"
 };
 

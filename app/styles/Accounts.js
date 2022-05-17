@@ -1,8 +1,12 @@
 import { StyleSheet } from "react-native";
-import { screenWidth } from "../components/common/NavigationBar";
+import { barHeight, screenHeight, screenWidth, statusBarHeight, wrapperHeight } from "../components/common/NavigationBar";
 import { Colors, GlobalStyle } from "./Global";
 
 export default styles = StyleSheet.create({
+	list: {
+		minHeight: wrapperHeight - 20,
+		maxHeight: wrapperHeight - 20
+	},
 	addCard: {
 		alignItems: "center",
 		justifyContent: "center",
@@ -81,4 +85,25 @@ export default styles = StyleSheet.create({
 		fontWeight: "bold",
 		color: Colors.mainContrast
 	},
+	cardName: {
+		maxWidth: screenWidth - 40 - 80 - 50 - 80 - 24,
+	},
+	searchWrapper: {
+		paddingTop: 20,
+		paddingBottom: 20,
+		height: 90,
+		borderTopWidth: 2,
+		borderColor: Colors.mainThird,
+		backgroundColor: Colors.mainFirst
+	},
+	input: {
+		height: 50,
+		paddingLeft: 14,
+		paddingRight: 14,
+		fontSize: GlobalStyle.fontSmall,
+		backgroundColor: Colors.mainSecond,
+		width: screenWidth - 40,
+		marginLeft: 20,
+		borderRadius: GlobalStyle.borderRadius
+	}
 });

@@ -20,4 +20,6 @@ const actionBarHeight = barDifference > 60 ? 60 : barDifference;
 // The height of the app's navigation bar.
 const barHeight = 62;
 
-export { screenWidth, screenHeight, windowWidth, windowHeight, statusBarHeight, actionBarHeight, barHeight };
+const wrapperHeight = screenHeight - statusBarHeight - barHeight - actionBarHeight - 40;
+
+export { screenWidth, screenHeight, windowWidth, windowHeight, statusBarHeight, actionBarHeight, barHeight, wrapperHeight };
