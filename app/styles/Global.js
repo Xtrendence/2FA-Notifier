@@ -17,6 +17,11 @@ export const GlobalStyle = {
 
 export const Colors = {
 	mainFirst: "rgb(0,0,0)",
+	mainSecond: "rgb(20,20,20)",
+	mainThird: "rgb(40,40,40)",
+	mainFourth: "rgb(50,50,50)",
+	mainContrast: "rgb(255,255,255)",
+	accentContrast: "rgb(255,255,255)"
 };
 
 export const Gradients = {
@@ -34,5 +39,5 @@ export const Gradients = {
 	11: ["#04bde4", "#0253b9"],
 	12: ["rgb(218,185,252)", "rgb(125,89,252)"],
 	13: ["rgb(249,206,183)", "rgb(234,174,202)", "rgb(210,182,226)", "rgb(173,209,242)"],
-	14: ["rgba(41,196,255,1)", "rgba(255,158,211,1)", "rgba(255,182,138,1)"]
+	14: ["rgba(41,100,220,1)", "rgba(240,138,211,1)", "rgba(240,162,138,1)"]
 };

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { statusBarHeight } from "./NavigationBar";
 import LinearGradient from "react-native-linear-gradient";
 import { empty } from "../../utils/Utils";
-import { GlobalStyle, Gradients } from "../../styles/Global";
+import { Colors, GlobalStyle, Gradients } from "../../styles/Global";
 
 export default function Page(props) {
 	let gradient = !empty(props?.gradient) ? props.gradient : 0;
@@ -27,16 +27,20 @@ const styles = StyleSheet.create({
 	page: {
 		width: "100%",
 		height: "100%",
-		paddingTop: statusBarHeight + 20,
-		paddingLeft: 20,
-		paddingRight: 20,
-		paddingBottom: 20,
+		paddingTop: statusBarHeight + 20
 	},
 	titleWrapper: {
 		alignItems: "flex-start",
+		paddingLeft: 20,
+		paddingBottom: 10,
+		borderBottomWidth: 2,
+		borderColor: Colors.mainThird
 	},
 	titleCard: {
-		padding: 20,
+		paddingLeft: 30,
+		paddingTop: 10,
+		paddingRight: 30,
+		paddingBottom: 10,
 		borderRadius: GlobalStyle.borderRadius,
 		shadowColor: GlobalStyle.shadowColor,
 		shadowOffset: GlobalStyle.shadowOffset,
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
 		elevation: GlobalStyle.shadowElevation,
 	},
 	title: {
-		color: "rgb(255,255,255)",
+		color: Colors.accentContrast,
 		fontSize: GlobalStyle.fontLarge,
 		fontWeight: "bold"
 	}

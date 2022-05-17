@@ -1,4 +1,5 @@
 {
-  "name": "notifier",
-  "displayName": "notifier"
+	"name": "notifier",
+	"displayName": "notifier",
+	"android.permissions": ["VIBRATE"]
 }
