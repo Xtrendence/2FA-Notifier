@@ -1,5 +1,9 @@
 # 2FA Notifier
 
+## Disclaimer
+
+This project is currently a work in progress.
+
 ![Screenshot](./assets/screenshot.png)
 
 ### What is 2FA Notifier?
