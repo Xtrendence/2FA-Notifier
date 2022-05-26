@@ -37,7 +37,7 @@ export default function AccountItem({ item, onPress }) {
 						<Text style={[styles.cardText, styles.cardName]} ellipsizeMode="tail" numberOfLines={1}>{item.name}</Text>
 						<Text style={styles.cardText}>{code}</Text>
 					</View>
-					<View style={styles.cardCounter}>
+					<View style={styles.cardCounter} pointerEvents="none">
 						<CircularProgress
 							radius={26}
 							value={counter}
