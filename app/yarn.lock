@@ -6002,6 +6002,11 @@ react-native-testing-library@^1.13.2:
   dependencies:
     pretty-format "^26.0.1"
 
+react-native-toast-message@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-2.1.5.tgz#550acb9c6c0f1ee49c6b57b65a56d34e297eb723"
+  integrity sha512-mk3rELtBEhrhWBCN6CTaw0gypgL9ZNauX3xx1LUs4uee9vc0pVsghrKxO57vroUCcNL2hDeZSLJWdQNMCkGeaQ==
+
 react-native-toggle-element@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-toggle-element/-/react-native-toggle-element-1.0.1.tgz#d26e6d5d685d4d802515a9c20e6bae8a423cefb1"
