@@ -4,7 +4,7 @@ import Page from "../components/common/Page";
 import styles from "../styles/Accounts";
 import AccountItem from "../components/AccountItem";
 import TouchableScale from "../components/common/TouchableScale";
-import { wrapperHeight, barHeight } from "../components/common/NavigationBar";
+import { wrapperHeight, barHeight } from "../utils/Measurements";
 import { Colors, Gradients } from "../styles/Global";
 import { wait, empty } from "../utils/Utils";
 
@@ -85,7 +85,7 @@ export default function Accounts({ navigation }) {
 	}, [input]);
 
 	return (
-		<Page title="Accounts" gradient={14} angle={240}>
+		<Page title="Accounts" gradient={14} angle={240} noBack onPressIcon={() => navigation.navigate("Settings")}>
 			<KeyboardAvoidingView style={[styles.view, keyboardVisible ? { height:listHeightKeyboard } : null]}>
 				<FlatList
 					refreshControl={
@@ -110,7 +110,7 @@ export default function Accounts({ navigation }) {
 							<AccountItem 
 								item={data.item} 
 								onPress={() => {
-									console.log(data.item.name);
+									navigation.navigate("View", { account:data.item });
 								}}
 							/>
 						);

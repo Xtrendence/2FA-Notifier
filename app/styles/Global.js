@@ -1,4 +1,4 @@
-import { statusBarHeight } from "../components/common/NavigationBar";
+import { statusBarHeight } from "../utils/Measurements";
 
 export const GlobalStyle = {
 	fontLarge: 22,

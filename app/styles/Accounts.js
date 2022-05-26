@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { barHeight, screenHeight, screenWidth, statusBarHeight, wrapperHeight } from "../components/common/NavigationBar";
+import { barHeight, screenHeight, screenWidth, statusBarHeight, wrapperHeight } from "../utils/Measurements";
 import { Colors, GlobalStyle } from "./Global";
 
 export default styles = StyleSheet.create({
