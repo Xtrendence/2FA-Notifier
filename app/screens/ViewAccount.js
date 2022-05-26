@@ -85,6 +85,6 @@ export default function ViewAccount({ navigation, route }) {
 					setCopied("");
 				}
 			}
-		})
+		});
 	}
 }

@@ -24,7 +24,13 @@ export const Colors = {
 	mainContrastDark: "rgb(220,220,220)",
 	accentFirst: "rgb(218,185,252)",
 	accentSecond: "rgb(125,89,252)",
-	accentContrast: "rgb(255,255,255)"
+	accentContrast: "rgb(255,255,255)",
+	negativeFirst: "rgb(190,40,50)",
+	negativeSecond: "rgb(150,30,30)",
+	positiveFirst: "rgb(50,140,80)",
+	positiveSecond: "rgb(35,120,60)",
+	neutralFirst: "rgb(60,120,190)",
+	neutralSecond: "rgb(100,140,200)",
 };
 
 export const Gradients = {

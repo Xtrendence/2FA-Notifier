@@ -99,7 +99,7 @@ export default function Accounts({ navigation }) {
 					ref={listRef}
 					style={[styles.list, keyboardVisible ? { maxHeight:listHeightKeyboard, minHeight:listHeightKeyboard } : null]}
 					ListHeaderComponent={
-						<TouchableScale style={styles.addCard}>
+						<TouchableScale style={styles.addCard} onPress={() => navigation.navigate("Scan")}>
 							<Text style={styles.addText}>Add Account</Text>
 						</TouchableScale>
 					}
