@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { View, Text } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { Colors, Gradients } from "../styles/Global";
@@ -11,19 +11,24 @@ import { empty } from "../utils/Utils";
 import CircularProgress from "react-native-circular-progress-indicator";
 
 export default function AccountItem({ item, onPress }) {
+	let period = !empty(item?.period) ? item.period : 30;
+
 	const [code, setCode] = useState("");
 	const [counter, setCounter] = useState(0);
-
-	let period = !empty(item?.period) ? item.period : 30;
+	
+	const interval = useRef(null);
 
 	useEffect(() => {
 		generateCode();
 
-		// let refresh = setInterval(generateCode, 1000);
+		if(empty(interval.current)) {
+			interval.current = setInterval(generateCode, 1000);
+		}
 
-		// return () => {
-		// 	clearInterval(refresh);
-		// }
+		return () => {
+			clearInterval(interval.current);
+			interval.current = null;
+		}
 	}, []);
 
 	return (

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { CardStyleInterpolators } from "@react-navigation/stack";
 import Toast, { BaseToast } from "react-native-toast-message";
 import Accounts from "../screens/Accounts";
 import ViewAccount from "../screens/ViewAccount";
@@ -9,15 +10,6 @@ import Scan from "../screens/Scan";
 import { Colors, GlobalStyle } from "../styles/Global";
 
 const Stack = createNativeStackNavigator();
-
-const screenOptions = {
-	headerShown: false, 
-	cardStyleInterpolator: ({ current }) => ({
-		cardStyle: {
-			opacity: current.progress,
-		},
-	})
-};
 
 const toastConfig = {
 	success: (props) => (
@@ -53,11 +45,11 @@ const toastConfig = {
 export default function Navigator() {
 	return (
 		<NavigationContainer theme={DarkTheme}>
-			<Stack.Navigator initialRouteName="Accounts" screenOptions={screenOptions}>
+			<Stack.Navigator initialRouteName="Accounts" screenOptions={{ headerShown:false, animation:"fade_from_bottom" }}>
 				<Stack.Screen name="Accounts" component={Accounts}/>
-				<Stack.Screen name="Settings" component={Settings}/>
-				<Stack.Screen name="View" component={ViewAccount}/>
-				<Stack.Screen name="Scan" component={Scan}/>
+				<Stack.Screen name="Settings" component={Settings} options={{ animation:"slide_from_right" }}/>
+				<Stack.Screen name="View" component={ViewAccount} options={{ animation:"fade_from_bottom" }}/>
+				<Stack.Screen name="Scan" component={Scan} options={{ animation:"slide_from_bottom" }}/>
 			</Stack.Navigator>
 			<Toast config={toastConfig}/>
 		</NavigationContainer>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, Text } from "react-native";
 import Page from "../components/common/Page";
 import { empty } from "../utils/Utils";
@@ -18,15 +18,20 @@ export default function ViewAccount({ navigation, route }) {
 	const [code, setCode] = useState("");
 	const [counter, setCounter] = useState(0);
 	const [copied, setCopied] = useState("");
+	
+	const interval = useRef(null);
 
 	useEffect(() => {
 		generateCode();
 
-		// let refresh = setInterval(generateCode, 1000);
+		if(empty(interval.current)) {
+			interval.current = setInterval(generateCode, 1000);
+		}
 
-		// return () => {
-		// 	clearInterval(refresh);
-		// }
+		return () => {
+			clearInterval(interval.current);
+			interval.current = null;
+		}
 	}, []);
 
 	return (
