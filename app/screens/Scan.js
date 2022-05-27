@@ -59,7 +59,22 @@ export default function Scan({ navigation }) {
 	);
 
 	async function addAccount(name, secret, period, gradient) {
-		if(empty(name) || empty(secret) || period || gradient) {
+		try {
+			period = empty(period) ? 30 : parseInt(period);
+		} catch(error) {
+			console.log(error);
+
+			Toast.show({
+				type: "error",
+				text1: "Error",
+				text2: `Please provide all required details.`,
+				position: "bottom",
+			});
+
+			return;
+		}
+
+		if(empty(name) || empty(secret) || empty(gradient)) {
 			Toast.show({
 				type: "error",
 				text1: "Error",

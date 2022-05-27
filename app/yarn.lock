@@ -5879,6 +5879,11 @@ react-native-aes-crypto@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-native-aes-crypto/-/react-native-aes-crypto-2.1.0.tgz#9482fe914cae411f10ec43a53b2439a41b78cbbd"
   integrity sha512-2zvvQXMW2Qeg9B/VDetoB2w/cyVncPuEsoW1iUhZP12jAx+zbxsdf+A7inSf2XKMcRURfpsfUshQTb2beYUVhA==
 
+react-native-biometrics@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-biometrics/-/react-native-biometrics-2.1.4.tgz#e201e9f18baeb560eeaba8d41fbd4f90d04152fe"
+  integrity sha512-Ek7NmzgHB4rot2DdzV9Q3pzxFjnEFipGSFsmWZw5vcM9vkMoebhz8d8UYgsp0efroyeLITDNHwcFGEzq8XW9Kg==
+
 react-native-camera@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-4.2.1.tgz#caf74081f055e89d7e9b0cd5108965d808c60e90"
@@ -5936,6 +5941,11 @@ react-native-gradle-plugin@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.6.tgz#b61a9234ad2f61430937911003cddd7e15c72b45"
   integrity sha512-eIlgtsmDp1jLC24dRn43hB3kEcZVqx6DUQbR0N1ABXGnMEafm9I3V3dUUeD1vh+Dy5WqijSoEwLNUPLgu5zDMg==
+
+react-native-keychain@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-8.0.0.tgz#ff708e4dc2a5440df717179bf9b7cd50f78b61d7"
+  integrity sha512-c7Cs+YQN26UaQsRG1dmlXL7VL2ctnXwH/dl0IOMEQ7ZaL2NdN313YSAI8ZEZZjrVhNmPsyWEuvTFqWrdpItqQg==
 
 react-native-linear-gradient@^2.5.6:
   version "2.5.6"
