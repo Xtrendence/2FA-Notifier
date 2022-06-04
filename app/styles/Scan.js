@@ -3,6 +3,15 @@ import { GlobalStyle, Colors } from "./Global";
 import { screenWidth } from "../utils/Measurements";
 
 export default styles = StyleSheet.create({
+	modalContent: {
+		backgroundColor: Colors.mainFirst,
+		flexGrow: 1,
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	modalText: {
+		color: Colors.mainContrast
+	},
 	input: {
 		height: 50,
 		paddingLeft: 14,
