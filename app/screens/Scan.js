@@ -7,46 +7,65 @@ import QRCodeScanner from "react-native-qrcode-scanner";
 import styles from "../styles/Scan";
 import { Colors } from "../styles/Global";
 import Toast from "react-native-toast-message";
-import { empty, parseURI, validSecret } from "../utils/Utils";
+import { empty, parseURI, validSecret, encryptObjectValues } from "../utils/Utils";
+import { sha256 } from "react-native-sha256";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Scan({ navigation }) {
 	const [camera, setCamera] = useState(false);
-	const [name, setName] = useState("");
-	const [secret, setSecret] = useState("");
-	const [period, setPeriod] = useState("");
-	const [gradient, setGradient] = useState(0);
+
+	// const [domain, setDomain] = useState("");
+	// const [name, setName] = useState("");
+	// const [secret, setSecret] = useState("");
+	// const [period, setPeriod] = useState("");
+	// const [gradient, setGradient] = useState(0);
+	
+	const [domain, setDomain] = useState("reddit.com");
+	const [name, setName] = useState("Reddit");
+	const [secret, setSecret] = useState("23TplPdS46Juzcyx");
+	const [period, setPeriod] = useState("30");
+	const [gradient, setGradient] = useState(1);
 
 	return (
-		<Page title="Add Account" gradient={11} onPressBack={() => navigation.navigate("Accounts")} icon="check" onPressIcon={() => addAccount(name, secret, period, gradient)}>
+		<Page title="Add Account" gradient={11} onPressBack={() => navigation.navigate("Accounts")} icon="check" onPressIcon={() => addAccount(domain, name, secret, period, gradient)}>
 			{ camera &&
-
-					<View style={styles.modalContent}>
-						<QRCodeScanner 
-							vibrate={false}
-							reactivate={true}
-							onRead={(e) => processCode(e.data)}
-							topContent={
-								<View style={styles.modalTop}>
-									<Text style={styles.modalText}>Please scan a valid 2FA QR code.</Text>
-								</View>
-							}
-							bottomContent={
-								<TouchableScale style={styles.button} onPress={() => setCamera(false)}>
-									<Text style={styles.text}>Close Camera</Text>
-								</TouchableScale>
-							}
-						/>
-					</View>
-
+				<View style={styles.modalContent}>
+					<QRCodeScanner 
+						vibrate={false}
+						reactivate={true}
+						onRead={(e) => processCode(e.data)}
+						topContent={
+							<View style={styles.modalTop}>
+								<Text style={styles.modalText}>Please scan a valid 2FA QR code.</Text>
+							</View>
+						}
+						bottomContent={
+							<TouchableScale style={styles.button} onPress={() => setCamera(false)}>
+								<Text style={styles.text}>Close Camera</Text>
+							</TouchableScale>
+						}
+					/>
+				</View>
 			}
 			{ !camera &&
 				<ScrollView nestedScrollEnabled={true}>
+					<TextInput
+						value={domain}
+						spellCheck={false}
+						keyboardType="default"
+						autoCorrect={false}
+						placeholder="Domain... (e.g. reddit.com)" 
+						selectionColor={Colors.accentFirst} 
+						placeholderTextColor={Colors.mainContrastDark} 
+						style={styles.input}
+						onChangeText={(value) => setDomain(value)}
+					/>
 					<TextInput
 						value={name}
 						spellCheck={false}
 						keyboardType="default"
 						autoCorrect={false}
-						placeholder="Name..." 
+						placeholder="Name... (e.g. Reddit)" 
 						selectionColor={Colors.accentFirst} 
 						placeholderTextColor={Colors.mainContrastDark} 
 						style={styles.input}
@@ -123,7 +142,7 @@ export default function Scan({ navigation }) {
 		}
 	}
 
-	async function addAccount(name, secret, period, gradient) {
+	async function addAccount(domain, name, secret, period, gradient) {
 		try {
 			period = empty(period) ? 30 : parseInt(period);
 		} catch(error) {
@@ -139,7 +158,7 @@ export default function Scan({ navigation }) {
 			return;
 		}
 
-		if(empty(name) || empty(secret) || empty(gradient)) {
+		if(empty(domain) || empty(name) || empty(secret) || empty(gradient)) {
 			Toast.show({
 				type: "error",
 				text1: "Error",
@@ -150,13 +169,35 @@ export default function Scan({ navigation }) {
 			return;
 		}
 
-		Toast.show({
-			type: "success",
-			text1: "Account Created",
-			text2: `The account "${name}" has been created.`,
-			position: "bottom",
-		});
+		try {
+			let hash = await sha256(domain.toLowerCase());
+			let encrypted = encryptObjectValues("1234", {
+				domain: domain,
+				name: name,
+				secret: secret,
+				period: period,
+				gradient: gradient
+			});
 
-		navigation.navigate("Accounts");
+			await AsyncStorage.setItem(hash, JSON.stringify(encrypted));
+
+			Toast.show({
+				type: "success",
+				text1: "Account Created",
+				text2: `The account "${name}" has been created.`,
+				position: "bottom",
+			});
+
+			navigation.navigate("Accounts");
+		} catch(error) {
+			console.log(error);
+
+			Toast.show({
+				type: "error",
+				text1: "Error",
+				text2: `Couldn't create account.`,
+				position: "bottom",
+			});
+		}
 	}
 }
