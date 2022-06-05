@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, ScrollView, TextInput, Modal, View } from "react-native";
+import { Text, ScrollView, TextInput, View } from "react-native";
 import Page from "../components/common/Page";
 import TouchableScale from "../components/common/TouchableScale";
 import GradientPicker from "../components/GradientPicker";

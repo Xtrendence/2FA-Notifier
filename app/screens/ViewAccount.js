@@ -35,7 +35,7 @@ export default function ViewAccount({ navigation, route }) {
 	}, []);
 
 	return (
-		<Page title={name} gradient={account?.gradient} onPressBack={() => navigation.navigate("Accounts")} icon="pen">
+		<Page title={name} gradient={account?.gradient} onPressBack={() => navigation.navigate("Accounts")} icon="pen" onPressIcon={() => navigation.navigate("Edit", { account:account })}>
 			<View style={styles.wrapper}>
 				<CircularProgress
 					radius={64}
