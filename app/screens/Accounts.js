@@ -38,8 +38,10 @@ export default function Accounts({ navigation }) {
 	}, []);
 
 	useEffect(() => {
-		navigation.addListener("focus", () => {
+		navigation.addListener("focus", async () => {
 			if(navigation.isFocused()) {
+				setAccounts([]);
+				await wait(500);
 				getAccounts();
 			}
 		});
@@ -108,7 +110,7 @@ export default function Accounts({ navigation }) {
 	);
 
 	async function getAccounts() {
-		let result = await decryptAccounts("1234");
+		let result = await decryptAccounts("1234") || [];
 		setAccounts(result);
 	}
 
