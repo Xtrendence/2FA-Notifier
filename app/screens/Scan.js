@@ -27,7 +27,7 @@ export default function Scan({ navigation }) {
 	const [gradient, setGradient] = useState(1);
 
 	return (
-		<Page title="Add Account" gradient={11} onPressBack={() => navigation.navigate("Accounts")} icon="check" onPressIcon={() => addAccount(domain, name, secret, period, gradient)}>
+		<Page title="Add Account" gradient={gradient} onPressBack={() => navigation.navigate("Accounts")} icon="check" onPressIcon={() => addAccount(domain, name, secret, period, gradient)}>
 			{ camera &&
 				<View style={styles.modalContent}>
 					<QRCodeScanner 
@@ -179,7 +179,7 @@ export default function Scan({ navigation }) {
 				gradient: gradient
 			});
 
-			await AsyncStorage.setItem(hash, JSON.stringify(encrypted));
+			await AsyncStorage.setItem(`account-${hash}`, JSON.stringify(encrypted));
 
 			Toast.show({
 				type: "success",

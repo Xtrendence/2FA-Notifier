@@ -100,7 +100,7 @@ export default function Edit({ navigation, route }) {
 
 			let encrypted = encryptObjectValues("1234", updated);
 
-			await AsyncStorage.setItem(hash, JSON.stringify(encrypted));
+			await AsyncStorage.setItem(`account-${hash}`, JSON.stringify(encrypted));
 
 			Toast.show({
 				type: "success",

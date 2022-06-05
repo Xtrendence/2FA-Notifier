@@ -120,12 +120,14 @@ export default function Accounts({ navigation }) {
 				let keys = await AsyncStorage.getAllKeys();
 				keys.map(async (key) => {
 					try {
-						let value = await AsyncStorage.getItem(key);
-						let decrypted = decryptObjectValues(password, JSON.parse(value));
-						result.push(decrypted);
+						if(key.includes("account-")) {
+							let value = await AsyncStorage.getItem(key);
+							let decrypted = decryptObjectValues(password, JSON.parse(value));
+							result.push(decrypted);
 
-						if(keys[keys.length - 1] === key) {
-							resolve(result);
+							if(keys[keys.length - 1] === key) {
+								resolve(result);
+							}
 						}
 					} catch(error) {
 						console.log(error);
