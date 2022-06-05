@@ -7,6 +7,7 @@ import ViewAccount from "../screens/ViewAccount";
 import Settings from "../screens/Settings";
 import Scan from "../screens/Scan";
 import toastConfig from "../utils/ToastConfig";
+import Edit from "../screens/Edit";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function Navigator() {
 				<Stack.Screen name="Accounts" component={Accounts}/>
 				<Stack.Screen name="Settings" component={Settings} options={{ animation:"slide_from_right" }}/>
 				<Stack.Screen name="View" component={ViewAccount} options={{ animation:"fade_from_bottom" }}/>
+				<Stack.Screen name="Edit" component={Edit} options={{ animation:"slide_from_right" }}/>
 				<Stack.Screen name="Scan" component={Scan} options={{ animation:"slide_from_bottom" }}/>
 			</Stack.Navigator>
 			<Toast config={toastConfig}/>
