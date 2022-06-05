@@ -6,50 +6,12 @@ import AccountItem from "../components/AccountItem";
 import TouchableScale from "../components/common/TouchableScale";
 import { wrapperHeight, barHeight } from "../utils/Measurements";
 import { Colors, Gradients } from "../styles/Global";
-import { wait, empty } from "../utils/Utils";
-
-let data = [
-	{
-		name: "Twitter",
-		secret: "23TplPdS46Juzcyx",
-		gradient: 11,
-		period: 30
-	},
-	{
-		name: "Instagram",
-		secret: "23TplsdS46Juzcyx",
-		gradient: 0,
-		period: 30
-	},
-	{
-		name: "Reddit",
-		secret: "23TplPdS46Jwzdyx",
-		gradient: 1,
-		period: 30
-	},
-	{
-		name: "Some really long name",
-		secret: "23TplPdS46Jwzdcc",
-		gradient: 9,
-		period: 30
-	},
-	{
-		name: "Cloudflare",
-		secret: "23TplPdS46Jwzdff",
-		gradient: 13,
-		period: 30
-	},
-	{
-		name: "Microsoft",
-		secret: "23TplPdS46Jwzdmm",
-		gradient: 2,
-		period: 30
-	},
-]
+import { wait, empty, decryptObjectValues } from "../utils/Utils";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Accounts({ navigation }) {
 	const [refreshing, setRefreshing] = useState(false);
-	const [accounts, setAccounts] = useState(data);
+	const [accounts, setAccounts] = useState([]);
 	const [filtered, setFiltered] = useState([]);
 	const [input, setInput] = useState("");
 
@@ -68,11 +30,19 @@ export default function Accounts({ navigation }) {
 	keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", keyboardDidShow);
 
 	const onRefresh = useCallback(async () => {
-		setAccounts({});
+		setAccounts([]);
 		setRefreshing(true);
 		await wait(500);
-		setAccounts(data);
+		getAccounts();
 		setRefreshing(false);
+	}, []);
+
+	useEffect(() => {
+		navigation.addListener("focus", () => {
+			if(navigation.isFocused()) {
+				getAccounts();
+			}
+		});
 	}, []);
 
 	useEffect(() => {
@@ -136,6 +106,37 @@ export default function Accounts({ navigation }) {
 			</View>
 		</Page>
 	);
+
+	async function getAccounts() {
+		let result = await decryptAccounts("1234");
+		setAccounts(result);
+	}
+
+	function decryptAccounts(password) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				let result = [];
+
+				let keys = await AsyncStorage.getAllKeys();
+				keys.map(async (key) => {
+					try {
+						let value = await AsyncStorage.getItem(key);
+						let decrypted = decryptObjectValues(password, JSON.parse(value));
+						result.push(decrypted);
+
+						if(keys[keys.length - 1] === key) {
+							resolve(result);
+						}
+					} catch(error) {
+						console.log(error);
+					}
+				});
+			} catch(error) {
+				console.log(error);
+				reject(error);
+			}
+		});
+	}
 
 	function getListData() {
 		if(empty(accounts)) {
