@@ -17,6 +17,13 @@ export default function GradientPicker({ active, setActive }) {
 	function getGradientRows() {
 		let rows = [];
 		let gradient = 0;
+
+		try {
+			active = parseInt(active);
+		} catch(error) {
+			console.log(error);
+		}
+
 		for(let i = 0; i < 5; i++) {
 			let items = [];
 			for(let j = 0; j < 3; j++) {
