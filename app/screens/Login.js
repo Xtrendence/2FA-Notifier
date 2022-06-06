@@ -8,7 +8,7 @@ import { Gradients, Colors } from "../styles/Global";
 import Loading from "../components/common/Loading";
 import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { empty } from "../utils/Utils";
+import { empty, wait } from "../utils/Utils";
 import TouchableScale from "../components/common/TouchableScale";
 
 export default function Login({ navigation }) {
@@ -124,6 +124,8 @@ export default function Login({ navigation }) {
 			let user = await AsyncStorage.getItem("user") || "";
 
 			setRegister(empty(user));
+
+			await wait(1500);
 
 			setLoading(false);
 		} catch(error) {
