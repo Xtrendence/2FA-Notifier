@@ -32,7 +32,7 @@ export default function Accounts({ navigation }) {
 	const onRefresh = useCallback(async () => {
 		setAccounts([]);
 		setRefreshing(true);
-		await wait(500);
+		await wait(200);
 		getAccounts();
 		setRefreshing(false);
 	}, []);
@@ -41,7 +41,7 @@ export default function Accounts({ navigation }) {
 		navigation.addListener("focus", async () => {
 			if(navigation.isFocused()) {
 				setAccounts([]);
-				await wait(500);
+				await wait(200);
 				getAccounts();
 			}
 		});
