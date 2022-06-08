@@ -6,8 +6,11 @@ import AccountItem from "../components/AccountItem";
 import TouchableScale from "../components/common/TouchableScale";
 import { wrapperHeight, barHeight } from "../utils/Measurements";
 import { Colors, Gradients } from "../styles/Global";
-import { wait, empty, decryptObjectValues } from "../utils/Utils";
+import { wait, empty, decryptObjectValues, handleBackPress } from "../utils/Utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
+import store from "../store/store";
+import Toast from "react-native-toast-message";
 
 export default function Accounts({ navigation }) {
 	const [refreshing, setRefreshing] = useState(false);
@@ -28,6 +31,8 @@ export default function Accounts({ navigation }) {
 
 	keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", keyboardDidHide);
 	keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", keyboardDidShow);
+
+	useFocusEffect(handleBackPress(navigation));
 
 	const onRefresh = useCallback(async () => {
 		setAccounts([]);
@@ -110,8 +115,20 @@ export default function Accounts({ navigation }) {
 	);
 
 	async function getAccounts() {
-		let result = await decryptAccounts("1234") || [];
-		setAccounts(result);
+		try {
+			let userPassword = store.getState().password.password;
+			let result = await decryptAccounts(userPassword) || [];
+			setAccounts(result);
+		} catch(error) {
+			console.log(error);
+
+			Toast.show({
+				type: "error",
+				text1: "Error Decrypting Accounts",
+				text2: `Please log out and try again.`,
+				position: "bottom",
+			});
+		}
 	}
 
 	function decryptAccounts(password) {
@@ -120,16 +137,15 @@ export default function Accounts({ navigation }) {
 				let result = [];
 
 				let keys = await AsyncStorage.getAllKeys();
+				keys = filterAccounts(keys);
 				keys.map(async (key) => {
 					try {
-						if(key.includes("account-")) {
-							let value = await AsyncStorage.getItem(key);
-							let decrypted = decryptObjectValues(password, JSON.parse(value));
-							result.push(decrypted);
+						let value = await AsyncStorage.getItem(key);
+						let decrypted = decryptObjectValues(password, JSON.parse(value));
+						result.push(decrypted);
 
-							if(keys[keys.length - 1] === key) {
-								resolve(result);
-							}
+						if(keys[keys.length - 1] === key) {
+							resolve(result);
 						}
 					} catch(error) {
 						console.log(error);
@@ -140,6 +156,18 @@ export default function Accounts({ navigation }) {
 				reject(error);
 			}
 		});
+	}
+
+	function filterAccounts(keys) {
+		let accounts = [];
+
+		keys.map(key => {
+			if(key.includes("account-")) {
+				accounts.push(key);
+			}
+		});
+
+		return accounts;
 	}
 
 	function getListData() {

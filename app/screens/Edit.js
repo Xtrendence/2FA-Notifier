@@ -9,6 +9,7 @@ import Toast from "react-native-toast-message";
 import { empty, encryptObjectValues } from "../utils/Utils";
 import { sha256 } from "react-native-sha256";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import store from "../store/store";
 
 export default function Edit({ navigation, route }) {
 	let account = route.params?.account;
@@ -138,7 +139,8 @@ export default function Edit({ navigation, route }) {
 				gradient: gradient
 			};
 
-			let encrypted = encryptObjectValues("1234", updated);
+			let userPassword = store.getState().password.password;
+			let encrypted = encryptObjectValues(userPassword, updated);
 
 			await AsyncStorage.setItem(`account-${hash}`, JSON.stringify(encrypted));
 

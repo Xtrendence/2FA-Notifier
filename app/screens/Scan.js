@@ -10,6 +10,7 @@ import Toast from "react-native-toast-message";
 import { empty, parseURI, validSecret, encryptObjectValues } from "../utils/Utils";
 import { sha256 } from "react-native-sha256";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import store from "../store/store";
 
 export default function Scan({ navigation }) {
 	const [camera, setCamera] = useState(false);
@@ -171,7 +172,8 @@ export default function Scan({ navigation }) {
 
 		try {
 			let hash = await sha256(domain.toLowerCase());
-			let encrypted = encryptObjectValues("1234", {
+			let userPassword = store.getState().password.password;
+			let encrypted = encryptObjectValues(userPassword, {
 				domain: domain,
 				name: name,
 				secret: secret,
