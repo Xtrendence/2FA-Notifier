@@ -5,7 +5,7 @@ import { screenHeight, screenWidth } from "../../utils/Measurements";
 import { Colors, GlobalStyle } from "../../styles/Global";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
 
-export default function Loading({ loading }) {
+export default function Loading({ loading, text }) {
 	const opacity = useSharedValue(0.25);
 
 	opacity.value = withRepeat(withTiming(1, { duration:1500, easing:Easing.ease }), -1, true);
@@ -21,7 +21,7 @@ export default function Loading({ loading }) {
 					</View>
 					<View style={styles.textWrapper}>
 						<Animated.View style={animatedStyle}>
-							<Text style={styles.text}>Loading...</Text>
+							<Text style={styles.text}>{text || "Loading..."}</Text>
 						</Animated.View>
 					</View>
 				</View>
