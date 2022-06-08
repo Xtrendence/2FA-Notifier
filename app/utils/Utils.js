@@ -1,6 +1,28 @@
+import React, { useCallback } from "react";
+import { BackHandler } from "react-native";
 import totp from "totp-generator";
 import * as OTPAuth from "url-otpauth";
 import Crypto from "./Crypto";
+
+export function handleBackPress(navigation) {
+	return useCallback(() => {
+		function onBackPress() {
+			let routes = navigation.getState()?.routes;
+			let previous = routes[routes.length - 2];
+				
+			if(previous?.name === "Login") {
+				BackHandler.exitApp();
+				return true;
+			}
+
+			return false;
+		}
+
+		BackHandler.addEventListener("hardwareBackPress", onBackPress);
+
+		return () => BackHandler.removeEventListener("hardwareBackPress", onBackPress);
+	}, []);
+}
 
 export function empty(value) {
 	if(typeof value === "object" && value !== null && Object.keys(value).length === 0) {

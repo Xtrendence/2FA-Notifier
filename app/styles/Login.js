@@ -36,13 +36,13 @@ export default styles = StyleSheet.create({
 		flexDirection: "column"
 	},
 	inputWrapper: {
-		width: screenWidth - 40,
+		width: screenWidth - 100,
 		height: 80,
 		position: "relative",
 	},
 	border: {
 		height: 58,
-		width: screenWidth - 40,
+		width: screenWidth - 100,
 		position: "absolute",
 		zIndex: 1,
 		borderRadius: GlobalStyle.borderRadius + 2
@@ -55,7 +55,7 @@ export default styles = StyleSheet.create({
 		paddingRight: 14,
 		fontSize: GlobalStyle.fontSmall,
 		backgroundColor: Colors.mainSecond,
-		width: screenWidth - 40 - 8,
+		width: screenWidth - 100 - 8,
 		marginLeft: 4,
 		marginTop: 4,
 		borderRadius: GlobalStyle.borderRadius
