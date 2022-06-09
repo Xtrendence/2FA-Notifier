@@ -23,7 +23,7 @@ export default function Edit({ navigation, route }) {
 	const [gradient, setGradient] = useState(account?.gradient || 0);
 
 	return (
-		<Page title="Edit Account" gradient={10} onPressBack={() => navigation.navigate("Accounts")} icon="check" onPressIcon={() => updateAccount(domain, name, secret, period, gradient)}>
+		<Page title="Edit Account" gradient={gradient} onPressBack={() => navigation.navigate("Accounts")} icon="check" onPressIcon={() => updateAccount(domain, name, secret, period, gradient)}>
 			<Modal visible={popup} transparent onRequestClose={() => setPopup(false)}>
 				<TouchableOpacity style={styles.popupBackground} activeOpacity={1} onPress={() => setPopup(false)}></TouchableOpacity>
 				<View style={styles.popupWrapper} pointerEvents="box-none">
