@@ -24,6 +24,7 @@ export const Colors = {
 	mainContrastDark: "rgb(220,220,220)",
 	accentFirst: "rgb(218,185,252)",
 	accentSecond: "rgb(125,89,252)",
+	accentThird: "rgb(180,130,200)",
 	accentContrast: "rgb(255,255,255)",
 	negativeFirst: "rgb(190,40,50)",
 	negativeSecond: "rgb(150,30,30)",
