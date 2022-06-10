@@ -72,12 +72,17 @@ export default styles = StyleSheet.create({
 	button: {
 		height: 50,
 		backgroundColor: Colors.accentSecond,
-		justifyContent: "center",
-		alignItems: "center",
 		width: screenWidth - 40,
 		marginLeft: 20,
 		marginTop: 20,
-		borderRadius: GlobalStyle.borderRadius
+		borderRadius: GlobalStyle.borderRadius,
+		overflow: "hidden",
+	},
+	buttonGradient: {
+		width: "100%",
+		height: "100%",
+		justifyContent: "center",
+		alignItems: "center",
 	},
 	text: {
 		fontSize: GlobalStyle.fontMedium,

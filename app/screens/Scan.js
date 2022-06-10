@@ -5,6 +5,7 @@ import TouchableScale from "../components/common/TouchableScale";
 import GradientPicker from "../components/GradientPicker";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import styles from "../styles/Scan";
+import LinearGradient from "react-native-linear-gradient";
 import { Colors, Gradients } from "../styles/Global";
 import Toast from "react-native-toast-message";
 import { empty, parseURI, validSecret, encryptObjectValues } from "../utils/Utils";
@@ -94,8 +95,10 @@ export default function Scan({ navigation }) {
 						style={styles.input}
 						onChangeText={(value) => setPeriod(value)}
 					/>
-					<TouchableScale style={[styles.button, { backgroundColor:Gradients[gradient][0] }]} onPress={() => setCamera(true)}>
-						<Text style={styles.text}>Scan QR Code</Text>
+					<TouchableScale style={styles.button} onPress={() => setCamera(true)}>
+						<LinearGradient useAngle={true} angle={45} style={styles.buttonGradient} colors={[Gradients[gradient][0], Gradients[gradient][1]]}>
+							<Text style={styles.text}>Scan QR Code</Text>
+						</LinearGradient>
 					</TouchableScale>
 					<GradientPicker active={gradient} setActive={setGradient}/>
 				</ScrollView>
