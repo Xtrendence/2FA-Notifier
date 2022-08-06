@@ -1,22 +1,22 @@
 {
-	"name": "2FA Notifier",
-	"description": "A browser extension and mobile app to automatically show 2FA codes for any website as notifications on your phone.",
-	"version": "1.0",
-	"manifest_version": 3,
-	"action": {
-		"default_popup": "src/popup.html",
-		"default_icon": {
-			"16": "src/assets/img/Icon-16.png",
-			"32": "src/assets/img/Icon-32.png",
-			"48": "src/assets/img/Icon-48.png",
-			"128": "src/assets/img/Icon-128.png"
-		}
-	},
-	"icons": {
-		"16": "src/assets/img/Icon-16.png",
-		"32": "src/assets/img/Icon-32.png",
-		"48": "src/assets/img/Icon-48.png",
-		"128": "src/assets/img/Icon-128.png"
-	},
-	"permissions": ["storage", "tabs"]
+  "name": "2FA Notifier",
+  "description": "A browser extension and mobile app to automatically show 2FA codes for any website as notifications on your phone.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "src/assets/img/Icon-16.png",
+      "32": "src/assets/img/Icon-32.png",
+      "48": "src/assets/img/Icon-48.png",
+      "128": "src/assets/img/Icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "src/assets/img/Icon-16.png",
+    "32": "src/assets/img/Icon-32.png",
+    "48": "src/assets/img/Icon-48.png",
+    "128": "src/assets/img/Icon-128.png"
+  },
+  "permissions": ["storage", "tabs"]
 }
